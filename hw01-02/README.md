@@ -4,13 +4,13 @@ https://habr.com/post/193380/
 SET DateStyle TO European;
 set timezone = 'Europe/Moscow';
 
-# UUID extension
+UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 DEFAULT uuid_generate_v1()
 
-#email
-# additional type DOMAIN email
+email
+additional type DOMAIN email
 
 CREATE EXTENSION citext;
 
@@ -19,9 +19,7 @@ CREATE DOMAIN email AS citext
 
 
 #phone number
-https://github.com/blm768/pg-libphonenumber
 
-CREATE EXTENSION pg_libphonenumber;
 
 79101234567
 
