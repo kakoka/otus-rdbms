@@ -9,7 +9,7 @@ integer | int4 | 4 байта | типичный выбор для целых ч
 bigint | int8 | 8 байт | целое в большом диапазоне | -9223372036854775808 .. 9223372036854775807
 money | money | переменный | вещественное число с указанной точностью | до 131072 цифр до десятичной точки и до 16383 — после
 numeric | numeric | переменный | вещественное число с переменной точностью | точность в пределах 15 десятичных цифр |
-varchar | varchar(n) | n символов | строка ограниченной переменной длины | от 1 до 65535 символов 
+varchar | varchar(n) | n символов | строка ограниченной переменной длины | от 1 до 65535 символов
 boolean | boolean | 1 байт | состояние: истина или ложь | |
 timestamptz | timestamptz | 8 байт | дата и время (с часовым поясом) | 4713 до н. э. – 294276 н. э. |
 date | date | 4 байта | дата (без времени суток) | 4713 до н.э. – 5874897 н. э. |
@@ -44,7 +44,7 @@ CREATE SEQUENCE "course__id__seq"
 
 ##### 1.2.2 Символьный тип данных
 
-Varchar(n) - использован для полей, в которых содержатся сведения преимущественно описательного характера. Длина символьного поля варьируется исходя из разумных потребностей. Например, для перечисления вариантов упаковки продукта: "шт,кг,упак,л" нужно символьное поле длиной от 1 до 4 символов, а поле адреса потребует 255 символов. 
+Varchar(n) - использован для полей, в которых содержатся сведения преимущественно описательного характера. Длина символьного поля варьируется исходя из разумных потребностей. Например, для перечисления вариантов упаковки продукта: "шт,кг,упак,л" нужно символьное поле длиной от 1 до 4 символов, а поле адреса потребует 255 символов.
 
 ##### 1.2.3 Логический типы данных
 
@@ -71,7 +71,7 @@ CREATE DOMAIN создаёт новый домен. Домен по сути п�
 # CREATE DOMAIN email AS citext
 ```
 
-Предложения CHECK задают ограничения целостности или проверки, которым должны удовлетворять значения домена. 
+Предложения CHECK задают ограничения целостности или проверки, которым должны удовлетворять значения домена.
 
 ```sql
   CHECK ( value ~ '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$' );
@@ -101,17 +101,17 @@ CREATE EXTENSION "uuid-ossp";
 
 Cодержит список городов, в которых проживают сотрудники ресторана. Список поселенийв одной локации не может быть слишком большим, а название города слишком длинным, отсюда и выбор данных типов.
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
-id_ | serial2 | nextval('city__id__seq'::regclass) | NO | идетификатор записи 
-city_name_ | varchar(30) | None | NO | название города 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
+id_ | serial2 | nextval('city__id__seq'::regclass) | NO | идетификатор записи
+city_name_ | varchar(30) | None | NO | название города
 
 #### Таблица `course_`
 
 Таблица текущего меню ресторана.
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('course__id__seq'::regclass)| NO | идентификатор записи
 dish_ID | integer | None| NO | внешний ключ к таблице блюд `dish_`
 discount_ID | integer | None| NO | внешний ключ к таблице блюд `discount_`
@@ -120,40 +120,40 @@ isActive | boolean | false| NO | блюдо 'доступно'/'не досту�
 
 #### Таблица `discount_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial4 | nextval('discount__id__seq'::regclass)| NO | идентификатор записи
 quantity_ | smallint | None | NO |
 
 #### Таблица `dish_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('dish__id__seq'::regclass)| NO | идентификатор записи
 dish_ | varchar(100) | None| NO |
 price_ | money | None| NO |
 isActive | boolean | false| NO |
 
-#### Таблица `dish_items 
+#### Таблица `dish_items
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 product_id | integer | None| NO |
 dish_id | integer | None| NO |
 quiantity_ | smallint | None | YES |
 
 #### Таблица `metrics_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('metrics__id__seq'::regclass)| NO | идентификатор записи
 metric_ | varchar(4) | None| NO |
 weight_of_packing_ | numeric | None | YES |
 
 #### Таблица `orders_course_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('order__id__seq'::regclass)| NO | идентификатор записи
 UUID | varchar(255) | uuid_generate_v4()| NO |
 table_ID | integer | None| NO |
@@ -165,18 +165,18 @@ isPayed | boolean | false| NO |
 stuff_ID | integer | None | YES |
 isClosed | boolean | false | YES |
 
-#### Таблица `orders_course_items 
+#### Таблица `orders_course_items
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 order_ID | integer | None| NO |
 course_ID | integer | None| NO |
 quantity_ | smallint | None| NO |
 
 #### Таблица `passports_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('passports__id__seq'::regclass)| NO | идентификатор записи
 passport_ | varchar() | None| NO |
 passport_photo_ | varchar() | None| NO |
@@ -185,38 +185,38 @@ passport_registration_address_ | varchar() | None| NO |
 
 #### Таблица `payment_method_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | smallint | nextval('payment_method__id__seq'::regclass)| NO | идентификатор записи
 method_ | varchar() | None| NO |
 isActive | boolean | false| NO |
 
 #### Таблица `position_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | smallint | nextval('position__id__seq'::regclass)| NO | идентификатор записи
 position_name_ | varchar() | None| NO |
 
-#### Таблица `product_items 
+#### Таблица `product_items
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 product_ID | integer | None| NO |
 supplier_ID | integer | None| NO |
 
 #### Таблица `products_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('products__id__seq'::regclass)| NO | идентификатор записи
 product_name_ | varchar() | None| NO |
 UUID | varchar() | uuid_generate_v1()| NO |
 
 #### Таблица `stuff_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('stuff__id__seq'::regclass)| NO | идентификатор записи
 name_ | varchar() | None| NO |
 surname_ | varchar() | None| NO |
@@ -233,8 +233,8 @@ passport_ID | integer | None| NO |
 
 #### Таблица `supplier_orders_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('supplier_orders__id__seq'::regclass)| NO | идентификатор записи
 supplier_ID | integer | None| NO |
 UUID | varchar() | uuid_generate_v4()| NO |
@@ -244,18 +244,18 @@ metric_ID | smallint | None| NO |
 price_ | money | None| NO |
 timestamp | timestamp with time zone | CURRENT_TIMESTAMP| NO |
 
-#### Таблица `supplier_orders_items 
+#### Таблица `supplier_orders_items
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 product_id | integer | None| NO |
 order_id | integer | None| NO |
 quantity | integer | None | YES |
 
 #### Таблица `suppliers_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | serial | nextval('suppliers__id__seq'::regclass)| NO | идентификатор записи
 supplier_name_ | varchar() | None| NO |
 address_ | varchar() | None| NO |
@@ -264,15 +264,15 @@ email_ | USER-DEFINED | None| NO |
 
 #### Таблица `tables_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | smallint | nextval('tables__id__seq'::regclass)| NO | идентификатор записи
 table_num_ | smallint | None| NO |
 
 #### Таблица `tables_reserve_`
 
-Column | Datatype | Default | Nullable | Комментарий 
-:---:|:---:|:---:|:---:| --- 
+Column | Datatype | Default | Nullable | Комментарий
+:---:|:---:|:---:|:---:| ---
 id_ | smallint | nextval('tables_reserve__id__seq'::regclass)| NO | идентификатор записи
 table_ID | integer | None| NO |
 isReserved | boolean | None| NO |
