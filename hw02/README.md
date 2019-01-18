@@ -337,9 +337,9 @@ $ pgtablemd --database_url postgres://postgres:postgres@localhost:5432/rest_db -
 ```
 #### 5.2 schemaspy
 
-[Schemaspy](http://schemaspy.org)
-[JDBC PostgreSQL driver](https://jdbc.postgresql.org)
-[Graphviz](http://www.graphviz.org)
+- [Schemaspy](http://schemaspy.org)
+- [JDBC PostgreSQL driver](https://jdbc.postgresql.org)
+- [Graphviz](http://www.graphviz.org)
 
 ```bash
 $ java -jar schemaspy-6.0.0.jar -t pgsql -db rest_db -host 172.16.1.10 -port 5432 -u postgres -p postgres -o db_out -dp postgresql-42.2.5.jar
